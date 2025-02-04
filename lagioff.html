@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>adakah</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Noto+Naskh+Arabic:wght@400..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .poppins-regular {
+        font-family: "Poppins", serif;
+        font-weight: 400;
+        font-style: normal;
+      }
+    </style>
+  </head>
+  <body>
+    <div style="text-align: center; padding: 50px">
+      <img
+        src="https://cdn.glitch.global/d8b8dd47-35a2-49d6-9d4b-bb69a86feaa8/47b72fe9-78b0-4c40-a9d2-c4b5af4c1f43.image.png?v=1738419040530"
+        width="200"
+      />
+      <h1 class="poppins-regular">Kayaknya internet kamu bermasalah</h1>
+    </div>
+    <script>
+      window.addEventListener("online", (e) => {
+        console.log("offline");
+        location.replace("https://wandering-glowing-goose.glitch.me");
+      });
+    </script>
+  </body>
+</html>
