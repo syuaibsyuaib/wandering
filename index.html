@@ -319,21 +319,7 @@
       // return;
     }
 
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker
-        .register("./firebase-messaging-sw.js")
-        .then((registration) => {
-          askNotificationPermission();
-          console.log(
-            "Service Worker registered with scope:",
-            registration.scope
-          );
-          // return getToken(messaging, { serviceWorkerRegistration: registration });
-        })
-        .catch((error) => {
-          console.error("Service Worker registration failed:", error);
-        });
-    }
+    
 
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
@@ -376,6 +362,25 @@
     $(document).ready(function () {
       $("#persetujuan_kebijakan").modal("show");
     });
+
+
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker
+        .register("./firebase-messaging-sw.js")
+        .then((registration) => {
+          askNotificationPermission();
+          console.log(
+            "Service Worker registered with scope:",
+            registration.scope
+          );
+          getToken(messaging, { serviceWorkerRegistration: registration }).then((token) => {
+            console.log("Token FCM diterima:", token);
+          })
+        })
+        .catch((error) => {
+          console.error("Service Worker registration failed:", error);
+        });
+    }
 
     function askNotificationPermission() {
       if (Notification.permission === "granted") {
