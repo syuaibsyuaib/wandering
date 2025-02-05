@@ -321,7 +321,7 @@
 
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker
-        .register("firebase-messaging-sw.js")
+        .register("/firebase-messaging-sw.js")
         .then((registration) => {
           askNotificationPermission();
           console.log(
@@ -396,7 +396,7 @@
 
     function registerAndShowNotification() {
       navigator.serviceWorker
-        .register("sw.js") // Replace with your service worker file path
+        .register("/sw.js") // Replace with your service worker file path
         .then((registration) => {
           console.log("sw.js registered");
           showNotification2();
