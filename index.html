@@ -321,7 +321,7 @@
 
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker
-        .register("./wandering/firebase-messaging-sw.js")
+        .register("./firebase-messaging-sw.js")
         .then((registration) => {
           askNotificationPermission();
           console.log(
