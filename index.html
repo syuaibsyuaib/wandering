@@ -321,14 +321,13 @@
 
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker
-        .register("./firebase-messaging-sw.js")
+        .register("./wandering/firebase-messaging-sw.js")
         .then((registration) => {
           askNotificationPermission();
           console.log(
             "Service Worker registered with scope:",
             registration.scope
           );
-          return getToken(messaging, { serviceWorkerRegistration: registration });
         })
         .catch((error) => {
           console.error("Service Worker registration failed:", error);
