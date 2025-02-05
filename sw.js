@@ -59,8 +59,7 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open('pwa-cache').then((cache) => {
       return cache.addAll([
-        '/',
-        '/lagioff.html',
+        'lagioff.html',
         // Tambahkan file lain yang ingin Anda cache di sini
       ]);
     })
@@ -107,7 +106,7 @@ self.addEventListener("fetch", (event) => {
   } else {
     event.respondWith(
       fetch(event.request).catch(() => {
-        return caches.match('/lagioff.html');
+        return caches.match('lagioff.html');
       })
     );
   }
