@@ -328,6 +328,7 @@
             "Service Worker registered with scope:",
             registration.scope
           );
+          messaging.useServiceWorker(registration);
         })
         .catch((error) => {
           console.error("Service Worker registration failed:", error);
