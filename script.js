@@ -22,6 +22,13 @@ function proses(e) {
     .then((res) => res.json())
     .then((res) => {
       console.log(res);
+      if(res.status == 'ilegal'){
+        $("#loading").modal("hide");
+        $('#modal_pesan').modal('show')
+        $('#modal_pesan .modal-body').html(`<p>Buang mengkudu buah manggis (cakep...), \n Sedekah dulu pake Qris. xixixi</p>`)
+        $('#modal_pesan .modal-header').removeClass("bg-success")
+      }
+
       if (res.status == 200) {
         setTimeout(() => {
           gscriptUrl(nip, "ambil response", localStorage.getItem('fcm'))
