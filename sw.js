@@ -117,5 +117,6 @@ messaging.onBackgroundMessage((payload) => {
   self.registration.showNotification(payload.notification.title, {
     body: payload.notification.body,
     icon: payload.notification.icon || "/icons/windows11/LargeTile.scale-100.png",
+data: payload.data.status
   });
 });
