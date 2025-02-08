@@ -36,7 +36,7 @@ function proses(e) {
           .catch((err) => {
             $("#loading").modal("hide");
             $('#modal_pesan').modal('show')
-            $('#modal_pesan .modal-body').html(`<p>${err}</p>`)
+            $('#modal_pesan .modal-body').html(`<p>Coba cek di aplikasi aslinya, kayaknya sudah berhasilmi</p>`)
             $('#modal_pesan .modal-header').removeClass("bg-success")
             $('#modal_pesan .modal-header').addClass("bg-danger text-light")
           });
@@ -46,7 +46,7 @@ function proses(e) {
     .catch((err) => {
       $("#loading").modal("hide");
       $('#modal_pesan').modal('show');
-      $('#modal_pesan .modal-body').html(`<p>${err}</p>`)
+      $('#modal_pesan .modal-body').html(`<p>Ups.. lagi gangguanki yang disana</p>`)
       $('#modal_pesan .modal-header').removeClass("bg-success")
       $('#modal_pesan .modal-header').addClass("bg-danger text-light")
     });
