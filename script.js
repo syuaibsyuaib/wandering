@@ -40,7 +40,7 @@ function proses(e) {
             $('#modal_pesan .modal-header').removeClass("bg-success")
             $('#modal_pesan .modal-header').addClass("bg-danger text-light")
           });
-        }, 3000);
+        }, 5000);
       }
     })
     .catch((err) => {
