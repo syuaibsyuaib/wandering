@@ -1,20 +1,28 @@
-// Based off of https://github.com/pwa-builder/PWABuilder/blob/main/docs/sw.js
+importScripts("https://www.gstatic.com/firebasejs/11.2.0/firebase-app-compat.js");
+importScripts("https://www.gstatic.com/firebasejs/11.2.0/firebase-messaging-compat.js");
 
-/*
-      Welcome to our basic Service Worker! This Service Worker offers a basic offline experience
-      while also being easily customizeable. You can add in your own code to implement the capabilities
-      listed below, or change anything else you would like.
+// Konfigurasi Firebase
+firebase.initializeApp({
+  apiKey: "AIzaSyCtr4PH8snb07hHNpq0dzTFGI6pFLOTkns",
+  authDomain: "adakah-ddd65.firebaseapp.com",
+  projectId: "adakah-ddd65",
+  storageBucket: "adakah-ddd65.firebasestorage.app",
+  messagingSenderId: "96528323807",
+  appId: "1:96528323807:web:d25f87552c42c3c520c56a",
+  measurementId: "G-2Y0EQNQPDT",
+});
 
+// Inisialisasi Firebase Messaging
+const messaging = firebase.messaging();
 
-      Need an introduction to Service Workers? Check our docs here: https://docs.pwabuilder.com/#/home/sw-intro
-      Want to learn more about how our Service Worker generation works? Check our docs here: https://docs.pwabuilder.com/#/studio/existing-app?id=add-a-service-worker
+// Tangani notifikasi saat aplikasi di background
+messaging.onBackgroundMessage((payload) => {
+  self.registration.showNotification(payload.notification.title, {
+    body: payload.notification.body,
+    icon: payload.notification.icon || "/icons/windows11/LargeTile.scale-100.png",
+  });
+});
 
-      Did you know that Service Workers offer many more capabilities than just offline? 
-        - Background Sync: https://microsoft.github.io/win-student-devs/#/30DaysOfPWA/advanced-capabilities/06
-        - Periodic Background Sync: https://web.dev/periodic-background-sync/
-        - Push Notifications: https://microsoft.github.io/win-student-devs/#/30DaysOfPWA/advanced-capabilities/07?id=push-notifications-on-the-web
-        - Badges: https://microsoft.github.io/win-student-devs/#/30DaysOfPWA/advanced-capabilities/07?id=application-badges
-    */
 
 const HOSTNAME_WHITELIST = [self.location.hostname, "fonts.gstatic.com", "fonts.googleapis.com", "cdn.jsdelivr.net"];
 
@@ -54,12 +62,12 @@ self.addEventListener("activate", (event) => {
  *  @Lifecycle Install
  *  Service Worker installing.
  */
-self.addEventListener('install', (event) => {
-  console.log('Service Worker installing.');
+self.addEventListener("install", (event) => {
+  console.log("Service Worker installing.");
   event.waitUntil(
-    caches.open('pwa-cache').then((cache) => {
+    caches.open("pwa-cache").then((cache) => {
       return cache.addAll([
-        'lagioff.html',
+        "lagioff.html",
         // Tambahkan file lain yang ingin Anda cache di sini
       ]);
     })
@@ -106,7 +114,7 @@ self.addEventListener("fetch", (event) => {
   } else {
     event.respondWith(
       fetch(event.request).catch(() => {
-        return caches.match('lagioff.html');
+        return caches.match("lagioff.html");
       })
     );
   }

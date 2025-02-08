@@ -1,7 +1,7 @@
 {
   "name": "adakah",
   "short_name": "adakah",
-  "start_url": "index.html",
+  "start_url": "/wandering/index.html",
   "scope": "/wandering/",
   "display": "standalone",
   "description": "adakah",
