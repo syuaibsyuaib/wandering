@@ -27,6 +27,7 @@ function proses(e) {
         $('#modal_pesan').modal('show')
         $('#modal_pesan .modal-body').html(`<p>Buang mengkudu buah manggis (cakep...), \n Sedekah dulu pake Qris. xixixi</p>`)
         $('#modal_pesan .modal-header').removeClass("bg-success")
+        $('#modal_pesan .modal-header').addClass("bg-danger text-light")
       }
 
       if (res.status == 200) {
