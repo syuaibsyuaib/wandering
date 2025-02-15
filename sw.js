@@ -39,7 +39,7 @@ self.addEventListener("install", (event) => {
     caches
       .open("pwa-cache")
       .then((cache) => {
-        return cache.addAll(CACHE_FILES);
+        return cache.addAll(["/wandering/", "/wandering/lagioff.html"]);
       })
       .catch((error) => {
         console.error("Failed to cache resources:", error);
@@ -53,29 +53,37 @@ self.addEventListener("install", (event) => {
  *
  *  void respondWith(Promise<Response> r)
  */
+// self.addEventListener("fetch", (event) => {
+//   const requestUrl = new URL(event.request.url);
+//   if (!HOSTNAME_WHITELIST.includes(requestUrl.hostname)) {
+//     event.respondWith(fetch(event.request).catch(() => caches.match("/wandering/lagioff.html")));
+//     return;
+//   }
+
+//   event.respondWith(
+//     caches.match(event.request).then((cached) => {
+//       if (cached) {
+//         return cached;
+//       }
+
+//       return fetch(getFixedUrl(event.request), { cache: "no-store" })
+//         .then((response) => {
+//           if (!response || response.status !== 200 || response.type !== "basic") {
+//             return response;
+//           }
+//           const responseClone = response.clone();
+//           caches.open("pwa-cache").then((cache) => cache.put(event.request, responseClone));
+//           return response;
+//         })
+//         .catch(() => caches.match("lagioff.html"));
+//     })
+//   );
+// });
+
 self.addEventListener("fetch", (event) => {
-  const requestUrl = new URL(event.request.url);
-  if (!HOSTNAME_WHITELIST.includes(requestUrl.hostname)) {
-    event.respondWith(fetch(event.request).catch(() => caches.match("lagioff.html")));
-    return;
-  }
-
   event.respondWith(
-    caches.match(event.request).then((cached) => {
-      if (cached) {
-        return cached;
-      }
-
-      return fetch(getFixedUrl(event.request), { cache: "no-store" })
-        .then((response) => {
-          if (!response || response.status !== 200 || response.type !== "basic") {
-            return response;
-          }
-          const responseClone = response.clone();
-          caches.open("pwa-cache").then((cache) => cache.put(event.request, responseClone));
-          return response;
-        })
-        .catch(() => caches.match("lagioff.html"));
+    caches.match(event.request).then((cachedResponse) => {
+      return cachedResponse || fetch(event.request).catch(() => caches.match("/wandering/offline.html"));
     })
   );
 });
