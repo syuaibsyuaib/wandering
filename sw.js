@@ -2,7 +2,8 @@ importScripts("https://www.gstatic.com/firebasejs/11.2.0/firebase-app-compat.js"
 importScripts("https://www.gstatic.com/firebasejs/11.2.0/firebase-messaging-compat.js");
 
 const HOSTNAME_WHITELIST = [self.location.hostname, "www.highperformanceformat.com", "pl25732847.profitablecpmrate.com", "unpkg.com","cdn.glitch.global", "thinnerlanguish.com","fonts.gstatic.com", "fonts.googleapis.com", "cdn.jsdelivr.net", "play.google.com", "thelifewillbefine.de", "code.jquery.com", "script.google.com", "www.gstatic.com"];
-
+// const CACHE_FILES = ["/", "index.html", "icons/windows11/LargeTile.scale-100.png", "icons/windows11/SmallTile.scale-100.png", "icons/windows11/Square44x44Logo.scale-100.png", "icons/windows11/Square150x150Logo.scale-100.png", "icons/windows11/Square310x310Logo.scale-100.png", "icons/windows11/Square70x70Logo.scale-100.png", "icons/windows11/Wide310x150Logo.scale-100.png", "icons/windows11/SplashScreen.scale-100.png", "lagioff.html"];
+const CACHE_FILES = ["/wandering/", "/wandering/lagioff.html", "/wandering/script.js", "/wandering/style.css", "/wandering/icons/"]
 // The Util Function to hack URLs of intercepted requests
 const getFixedUrl = (req) => {
   var now = Date.now();
@@ -31,7 +32,7 @@ self.addEventListener("activate", (event) => {
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cache) => {
-          if (cache !== CACHE_NAME) {
+          if (cache !== CACHE_FILES) {
             console.log("Deleting old cache:", cache);
             return caches.delete(cache);
           }
@@ -45,7 +46,6 @@ self.addEventListener("activate", (event) => {
  *  Service Worker installing.
  */
 
-const CACHE_FILES = ["/", "index.html", "icons/windows11/LargeTile.scale-100.png", "icons/windows11/SmallTile.scale-100.png", "icons/windows11/Square44x44Logo.scale-100.png", "icons/windows11/Square150x150Logo.scale-100.png", "icons/windows11/Square310x310Logo.scale-100.png", "icons/windows11/Square70x70Logo.scale-100.png", "icons/windows11/Wide310x150Logo.scale-100.png", "icons/windows11/SplashScreen.scale-100.png", "lagioff.html"];
 
 self.addEventListener("install", (event) => {
   console.log("Service Worker installing.");
@@ -53,7 +53,7 @@ self.addEventListener("install", (event) => {
     caches
       .open("pwa-cache")
       .then((cache) => {
-        return cache.addAll(["/wandering/", "/wandering/lagioff.html"]);
+        return cache.addAll(CACHE_FILES);
       })
       .catch((error) => {
         console.error("Failed to cache resources:", error);
