@@ -25,24 +25,24 @@ const getFixedUrl = (req) => {
  *
  *  waitUntil(): activating ====> activated
  */
-// self.addEventListener("activate", (event) => {
-//   event.waitUntil(self.clients.claim());
-// });
-
 self.addEventListener("activate", (event) => {
-  event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames.map((cache) => {
-          if (cache !== CACHE_FILES) {
-            console.log("Deleting old cache:", cache);
-            return caches.delete(cache);
-          }
-        })
-      );
-    })
-  );
+  event.waitUntil(self.clients.claim());
 });
+
+// self.addEventListener("activate", (event) => {
+//   event.waitUntil(
+//     caches.keys().then((cacheNames) => {
+//       return Promise.all(
+//         cacheNames.map((cache) => {
+//           if (cache !== CACHE_FILES) {
+//             console.log("Deleting old cache:", cache);
+//             return caches.delete(cache);
+//           }
+//         })
+//       );
+//     })
+//   );
+// });
 /**
  *  @Lifecycle Install
  *  Service Worker installing.
