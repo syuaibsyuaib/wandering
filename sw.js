@@ -113,10 +113,6 @@ const firebaseConfig = {
   measurementId: "G-2Y0EQNQPDT",
 };
 
-// Export konfigurasi agar bisa diakses dari file lain
-export { firebaseConfig };
-
-
 firebase.initializeApp(firebaseConfig);
 
 // Inisialisasi Firebase Messaging
