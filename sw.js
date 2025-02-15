@@ -97,6 +97,7 @@ self.addEventListener("install", (event) => {
 self.addEventListener("fetch", (event) => {
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
+      console.log(cachedResponse)
       return cachedResponse || fetch(event.request).catch(() => caches.match("/wandering/offline.html"));
     })
   );
