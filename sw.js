@@ -56,7 +56,7 @@ self.addEventListener("install", (event) => {
 self.addEventListener("fetch", (event) => {
   const requestUrl = new URL(event.request.url);
   if (!HOSTNAME_WHITELIST.includes(requestUrl.hostname)) {
-    event.respondWith(fetch(event.request).catch(() => caches.match("./lagioff.html")));
+    event.respondWith(fetch(event.request).catch(() => caches.match("lagioff.html")));
     return;
   }
 
