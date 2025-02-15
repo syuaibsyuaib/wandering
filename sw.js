@@ -53,9 +53,9 @@ self.addEventListener("install", (event) => {
   console.log("Service Worker installing.");
   event.waitUntil(
     caches
-      .open("pwa-cache")
+      .open("pwa-cache-v1")
       .then((cache) => {
-        return cache.addAll(["./", "index.html"]);
+        return cache.addAll(["/", "/index.html"]);
       })
       .catch((error) => {
         console.error("Failed to cache resources:", error);
