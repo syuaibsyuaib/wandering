@@ -3,7 +3,9 @@ importScripts("https://www.gstatic.com/firebasejs/11.2.0/firebase-messaging-comp
 
 const HOSTNAME_WHITELIST = [self.location.hostname, "www.highperformanceformat.com", "pl25732847.profitablecpmrate.com", "unpkg.com","cdn.glitch.global", "thinnerlanguish.com","fonts.gstatic.com", "fonts.googleapis.com", "cdn.jsdelivr.net", "play.google.com", "thelifewillbefine.de", "code.jquery.com", "script.google.com", "www.gstatic.com"];
 // const CACHE_FILES = ["/", "index.html", "icons/windows11/LargeTile.scale-100.png", "icons/windows11/SmallTile.scale-100.png", "icons/windows11/Square44x44Logo.scale-100.png", "icons/windows11/Square150x150Logo.scale-100.png", "icons/windows11/Square310x310Logo.scale-100.png", "icons/windows11/Square70x70Logo.scale-100.png", "icons/windows11/Wide310x150Logo.scale-100.png", "icons/windows11/SplashScreen.scale-100.png", "lagioff.html"];
-const CACHE_FILES = ["/wandering/", "/wandering/lagioff.html", "/wandering/script.js", "/wandering/style.css", "/wandering/icons/"]
+// const CACHE_FILES = ["/wandering/", "/wandering/lagioff.html", "/wandering/script.js", "/wandering/style.css", "/wandering/icons/"]
+const CACHE_FILES = ["/", "lagioff.html", "wandering/lagioff.html", "/lagioff.html"]
+
 // The Util Function to hack URLs of intercepted requests
 const getFixedUrl = (req) => {
   var now = Date.now();
@@ -98,7 +100,7 @@ self.addEventListener("fetch", (event) => {
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
       console.log(cachedResponse)
-      return cachedResponse || fetch(event.request).catch(() => caches.match("/wandering/lagioff.html"));
+      return cachedResponse || fetch(event.request).catch(() => caches.match("wandering/lagioff.html"));
     })
   );
 });
