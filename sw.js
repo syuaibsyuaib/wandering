@@ -1,5 +1,6 @@
 importScripts("https://www.gstatic.com/firebasejs/11.2.0/firebase-app-compat.js");
 importScripts("https://www.gstatic.com/firebasejs/11.2.0/firebase-messaging-compat.js");
+importScripts("./firebase-config.js");
 
 const HOSTNAME_WHITELIST = [self.location.hostname, "fonts.gstatic.com", "fonts.googleapis.com", "cdn.jsdelivr.net"];
 
@@ -23,6 +24,7 @@ const getFixedUrl = (req) => {
  *  waitUntil(): activating ====> activated
  */
 self.addEventListener("activate", (event) => {
+
   event.waitUntil(self.clients.claim());
 });
 
@@ -30,52 +32,35 @@ self.addEventListener("activate", (event) => {
  *  @Lifecycle Install
  *  Service Worker installing.
  */
+
+const CACHE_FILES = [
+  "./",
+  "./index.html",
+  "./manifest.json",
+  "./sw.js",
+  "./css/style.css",
+  "./js/main.js",
+  "./js/jquery.min.js",
+  "./js/popper.min.js",
+  "./js/bootstrap.min.js",
+  "./js/fontawesome.js",
+  "./icons/windows11/LargeTile.scale-100.png",
+  "./icons/windows11/SmallTile.scale-100.png",
+  "./icons/windows11/Square44x44Logo.scale-100.png",
+  "./icons/windows11/Square150x150Logo.scale-100.png",
+  "./icons/windows11/Square310x310Logo.scale-100.png",
+  "./icons/windows11/Square70x70Logo.scale-100.png",
+  "./icons/windows11/Wide310x150Logo.scale-100.png",
+  "./icons/windows11/SplashScreen.scale-100.png",
+  "./lagioff.html",
+];
+
+
 self.addEventListener("install", (event) => {
   console.log("Service Worker installing.");
   event.waitUntil(
     caches.open("pwa-cache").then((cache) => {
-      return cache.addAll([
-        "./",
-        "./index.html",
-        "./manifest.json",
-        "./sw.js",
-        "./css/style.css",
-        "./js/main.js",
-        "./js/jquery.min.js",
-        "./js/popper.min.js",
-        "./js/bootstrap.min.js",
-        "./js/fontawesome.js",
-        "./icons/windows11/LargeTile.scale-100.png",
-        "./icons/windows11/SmallTile.scale-100.png",
-        "./icons/windows11/Square44x44Logo.scale-100.png",
-        "./icons/windows11/Square150x150Logo.scale-100.png",
-        "./icons/windows11/Square310x310Logo.scale-100.png",
-        "./icons/windows11/Square70x70Logo.scale-100.png",
-        "./icons/windows11/Wide310x150Logo.scale-100.png",
-        "./icons/windows11/SplashScreen.scale-100.png",
-        "./icons/windows11/SplashScreen.scale-200.png",
-        "./icons/windows11/SplashScreen.scale-400.png",
-        "./icons/windows11/SplashScreen.scale-150.png",
-        "./icons/windows11/SplashScreen.scale-125.png",
-        "./icons/windows11/SplashScreen.scale-100.png",
-        "./icons/windows11/SplashScreen.scale-200.png",
-        "./icons/windows11/SplashScreen.scale-400.png",
-        "./icons/windows11/SplashScreen.scale-150.png",
-        "./icons/windows11/SplashScreen.scale-125.png",
-        "./icons/windows11/SplashScreen.scale-100.png",
-        "./icons/windows11/SplashScreen.scale-200.png",
-        "./icons/windows11/SplashScreen.scale-400.png",
-        "./icons/windows11/SplashScreen.scale-150.png",
-        "./icons/windows11/SplashScreen.scale-125.png",
-        "./icons/windows11/SplashScreen.scale-100.png",
-        "./icons/windows11/SplashScreen.scale-200.png",
-        "./icons/windows11/SplashScreen.scale-400.png",
-        "./icons/windows11/SplashScreen.scale-150.png",
-        "./icons/windows11/SplashScreen.scale-125.png",
-        "./icons/windows11/SplashScreen.scale-100.png",
-        "./lagioff.html",
-        // Tambahkan file lain yang ingin Anda cache di sini
-      ]);
+      return cache.addAll(CACHE_FILES);
     })
   );
 });
@@ -87,59 +72,56 @@ self.addEventListener("install", (event) => {
  *  void respondWith(Promise<Response> r)
  */
 self.addEventListener("fetch", (event) => {
-  // Skip some of cross-origin requests, like those for Google Analytics.
-  if (HOSTNAME_WHITELIST.indexOf(new URL(event.request.url).hostname) > -1) {
-   
-    const cached = caches.match(event.request);
-    const fixedUrl = getFixedUrl(event.request);
-    const fetched = fetch(fixedUrl, { cache: "no-store" });
-    const fetchedCopy = fetched.then((resp) => resp.clone());
-
-    
+  const requestUrl = new URL(event.request.url);
+  if (!HOSTNAME_WHITELIST.includes(requestUrl.hostname)) {
     event.respondWith(
-      Promise.race([fetched.catch((_) => cached), cached])
-        .then((resp) => resp || fetched)
-        .catch((_) => {
-          /* eat any errors */
-        })
+      fetch(event.request).catch(() => caches.match("./lagioff.html"))
     );
-
-    // Update the cache with the version we fetched (only for ok status)
-    event.waitUntil(
-      Promise.all([fetchedCopy, caches.open("pwa-cache")])
-        .then(([response, cache]) => response.ok && cache.put(event.request, response))
-        .catch((_) => {
-          /* eat any errors */
-        })
-    );
-  } else {
-    event.respondWith(
-      fetch(event.request).catch(() => {
-        return caches.match("./lagioff.html");
-      })
-    );
+    return;
   }
+
+  event.respondWith(
+    caches.match(event.request).then((cached) => {
+      if (cached) {
+        return cached;
+      }
+
+      return fetch(getFixedUrl(event.request), { cache: "no-store" })
+        .then((response) => {
+          if (!response || response.status !== 200 || response.type !== "basic") {
+            return response;
+          }
+          const responseClone = response.clone();
+          caches.open("pwa-cache").then((cache) => cache.put(event.request, responseClone));
+          return response;
+        })
+        .catch(() => caches.match("./lagioff.html"));
+    })
+  );
 });
+
 
 
 // Konfigurasi Firebase
-firebase.initializeApp({
-  apiKey: "AIzaSyCtr4PH8snb07hHNpq0dzTFGI6pFLOTkns",
-  authDomain: "adakah-ddd65.firebaseapp.com",
-  projectId: "adakah-ddd65",
-  storageBucket: "adakah-ddd65.firebasestorage.app",
-  messagingSenderId: "96528323807",
-  appId: "1:96528323807:web:d25f87552c42c3c520c56a",
-  measurementId: "G-2Y0EQNQPDT",
-});
+firebase.initializeApp(firebaseConfig);
 
 // Inisialisasi Firebase Messaging
 const messaging = firebase.messaging();
 
 // Tangani notifikasi saat aplikasi di background
 messaging.onBackgroundMessage((payload) => {
-  self.registration.showNotification(payload.notification.title, {
-    body: payload.notification.body,
-    icon: payload.notification.icon || "/icons/windows11/LargeTile.scale-100.png"
+  const { title, body, icon, click_action } = payload.notification;
+  self.registration.showNotification(title, {
+    body,
+    icon: icon || "/icons/windows11/LargeTile.scale-100.png",
+    data: { click_action },
+    actions: [{ action: "open_url", title: "Buka" }],
   });
+});
+
+self.addEventListener("notificationclick", (event) => {
+  event.notification.close();
+  if (event.notification.data && event.notification.data.click_action) {
+    event.waitUntil(clients.openWindow(event.notification.data.click_action));
+  }
 });
