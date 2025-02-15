@@ -31,7 +31,7 @@ self.addEventListener("activate", (event) => {
  *  Service Worker installing.
  */
 
-const CACHE_FILES = ["/", "index.html", "manifest.json", "sw.js", "css/style.css", "js/main.js", "js/jquery.min.js", "js/popper.min.js", "js/bootstrap.min.js", "js/fontawesome.js", "icons/windows11/LargeTile.scale-100.png", "icons/windows11/SmallTile.scale-100.png", "icons/windows11/Square44x44Logo.scale-100.png", "icons/windows11/Square150x150Logo.scale-100.png", "icons/windows11/Square310x310Logo.scale-100.png", "icons/windows11/Square70x70Logo.scale-100.png", "icons/windows11/Wide310x150Logo.scale-100.png", "icons/windows11/SplashScreen.scale-100.png", "lagioff.html"];
+const CACHE_FILES = ["/", "index.html", "icons/windows11/LargeTile.scale-100.png", "icons/windows11/SmallTile.scale-100.png", "icons/windows11/Square44x44Logo.scale-100.png", "icons/windows11/Square150x150Logo.scale-100.png", "icons/windows11/Square310x310Logo.scale-100.png", "icons/windows11/Square70x70Logo.scale-100.png", "icons/windows11/Wide310x150Logo.scale-100.png", "icons/windows11/SplashScreen.scale-100.png", "lagioff.html"];
 
 self.addEventListener("install", (event) => {
   console.log("Service Worker installing.");
