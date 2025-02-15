@@ -56,7 +56,7 @@ self.addEventListener("install", (event) => {
       .open("pwa-cache-v1")
       .then((cache) => {
         console.log(self.location.hostname)
-        return cache.addAll([self.location.hostname]);
+        return cache.addAll([self.location.hostname + "/wandering/"]);
       })
       .catch((error) => {
         console.error("Failed to cache resources:", error);
