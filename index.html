@@ -115,11 +115,11 @@
       <div class="container pt-3">
         <script type="text/javascript">
           atOptions = {
-            'key' : '7bccd29f9b0ef8d457217972d14e5d58',
-            'format' : 'iframe',
-            'height' : 50,
-            'width' : 320,
-            'params' : {}
+            'key': '7bccd29f9b0ef8d457217972d14e5d58',
+            'format': 'iframe',
+            'height': 50,
+            'width': 320,
+            'params': {}
           };
         </script>
         <script type="text/javascript" src="//thinnerlanguish.com/7bccd29f9b0ef8d457217972d14e5d58/invoke.js"></script>
@@ -392,21 +392,25 @@
           regis = registration;
 
           console.log("Request token FCM ...");
-
-          getToken(messaging, {
-            serviceWorkerRegistration: registration,
-            vapidKey:
-              "BC-IgG_mV3Mt1hUddSCzEw9_PRxw7WMo8-NxEi2lq7b24ngPqCV7awV1OJ4vLo6HEnQKlyAgs5K6bPRl_CIygQs"
-          }).then((token) => {
-            localStorage.setItem("fcm", token);
-            console.log("Token FCM diterima:", token);
-          })
         })
         .catch((error) => {
           console.error("Service Worker registration failed:", error);
         });
     }
 
+    navigator.serviceWorker.ready.then((registration) => {
+      console.log("Service Worker is active:", registration);
+      getToken(messaging, {
+        serviceWorkerRegistration: registration,
+        vapidKey:
+          "BC-IgG_mV3Mt1hUddSCzEw9_PRxw7WMo8-NxEi2lq7b24ngPqCV7awV1OJ4vLo6HEnQKlyAgs5K6bPRl_CIygQs"
+      }).then((token) => {
+        localStorage.setItem("fcm", token);
+        console.log("Token FCM diterima:", token);
+      }).catch((err) => {
+        console.log("fcm error :", err)
+      })
+    });
 
     function askNotificationPermission() {
       if (Notification.permission === "granted") {
