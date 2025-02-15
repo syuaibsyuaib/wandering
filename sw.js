@@ -39,7 +39,9 @@ self.addEventListener("install", (event) => {
     caches
       .open("pwa-cache")
       .then((cache) => {
-        return cache.addAll(CACHE_FILES);
+        return cache.addAll([
+          "lagioff.html"
+        ]);
       })
       .catch((error) => {
         console.error("Failed to cache resources:", error);
