@@ -1,7 +1,8 @@
 importScripts("https://www.gstatic.com/firebasejs/11.2.0/firebase-app-compat.js");
 importScripts("https://www.gstatic.com/firebasejs/11.2.0/firebase-messaging-compat.js");
 
-const HOSTNAME_WHITELIST = [self.location.hostname, "www.highperformanceformat.com", "pl25732847.profitablecpmrate.com", "unpkg.com","cdn.glitch.global", "thinnerlanguish.com","fonts.gstatic.com", "fonts.googleapis.com", "cdn.jsdelivr.net", "play.google.com", "thelifewillbefine.de", "code.jquery.com", "script.google.com", "www.gstatic.com"];
+// const HOSTNAME_WHITELIST = [self.location.hostname, "www.highperformanceformat.com", "pl25732847.profitablecpmrate.com", "unpkg.com","cdn.glitch.global", "thinnerlanguish.com","fonts.gstatic.com", "fonts.googleapis.com", "cdn.jsdelivr.net", "play.google.com", "thelifewillbefine.de", "code.jquery.com", "script.google.com", "www.gstatic.com"];
+const HOSTNAME_WHITELIST = [self.location.hostname];
 // const CACHE_FILES = ["/", "index.html", "icons/windows11/LargeTile.scale-100.png", "icons/windows11/SmallTile.scale-100.png", "icons/windows11/Square44x44Logo.scale-100.png", "icons/windows11/Square150x150Logo.scale-100.png", "icons/windows11/Square310x310Logo.scale-100.png", "icons/windows11/Square70x70Logo.scale-100.png", "icons/windows11/Wide310x150Logo.scale-100.png", "icons/windows11/SplashScreen.scale-100.png", "lagioff.html"];
 // const CACHE_FILES = ["/wandering/", "/wandering/lagioff.html", "/wandering/script.js", "/wandering/style.css", "/wandering/icons/"]
 const CACHE_FILES = ["/", "lagioff.html", "wandering/lagioff.html", "/lagioff.html"]
@@ -70,41 +71,41 @@ self.addEventListener("install", (event) => {
  *
  *  void respondWith(Promise<Response> r)
  */
-// self.addEventListener("fetch", (event) => {
-//   const requestUrl = new URL(event.request.url);
-//   if (!HOSTNAME_WHITELIST.includes(requestUrl.hostname)) {
-//     event.respondWith(fetch(event.request).catch(() => caches.match("/wandering/lagioff.html")));
-//     return;
-//   }
-
-//   event.respondWith(
-//     caches.match(event.request).then((cached) => {
-//       if (cached) {
-//         return cached;
-//       }
-
-//       return fetch(getFixedUrl(event.request), { cache: "no-store" })
-//         .then((response) => {
-//           if (!response || response.status !== 200 || response.type !== "basic") {
-//             return response;
-//           }
-//           const responseClone = response.clone();
-//           caches.open("pwa-cache").then((cache) => cache.put(event.request, responseClone));
-//           return response;
-//         })
-//         .catch(() => caches.match("lagioff.html"));
-//     })
-//   );
-// });
-
 self.addEventListener("fetch", (event) => {
+  const requestUrl = new URL(event.request.url);
+  if (!HOSTNAME_WHITELIST.includes(requestUrl.hostname)) {
+    event.respondWith(fetch(event.request).catch(() => caches.match("/wandering/lagioff.html")));
+    return;
+  }
+
   event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      console.log(cachedResponse)
-      return cachedResponse || fetch(event.request).catch(() => caches.match("/wandering/lagioff.html"));
+    caches.match(event.request).then((cached) => {
+      if (cached) {
+        return cached;
+      }
+
+      return fetch(getFixedUrl(event.request), { cache: "no-store" })
+        .then((response) => {
+          if (!response || response.status !== 200 || response.type !== "basic") {
+            return response;
+          }
+          const responseClone = response.clone();
+          caches.open("pwa-cache").then((cache) => cache.put(event.request, responseClone));
+          return response;
+        })
+        .catch(() => caches.match("lagioff.html"));
     })
   );
 });
+
+// self.addEventListener("fetch", (event) => {
+//   event.respondWith(
+//     caches.match(event.request).then((cachedResponse) => {
+//       console.log(cachedResponse)
+//       return cachedResponse || fetch(event.request).catch(() => caches.match("/wandering/lagioff.html"));
+//     })
+//   );
+// });
 
 // Konfigurasi Firebase
 const firebaseConfig = {
