@@ -56,7 +56,7 @@ self.addEventListener("install", (event) => {
     caches
       .open("pwa-cache-v1")
       .then((cache) => {
-        return cache.addAll(["/wandering/"]);
+        return cache.addAll(["/wandering/", "/wandering/lagioff.html"]);
       })
       .catch((error) => {
         console.error("Failed to cache resources:", error);
