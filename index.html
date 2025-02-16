@@ -428,7 +428,8 @@
     onMessage(messaging, (payload) => {
       console.log("Notifikasi FCM diterima: ", payload);
       // showNotification(regis, payload.notification.body);
-      new Notification(payload.notification.title, {
+
+ServiceWorkerRegistration.showNotification(payload.notification.title, {
         body: payload.notification.body,
         icon: payload.notification.icon,
       });
