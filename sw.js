@@ -89,11 +89,12 @@ self.addEventListener("fetch", (event) => {
           if (!response || response.status !== 200 || response.type !== "basic") {
             return response;
           }
+          
           const responseClone = response.clone();
           caches.open("pwa-cache").then((cache) => cache.put(event.request, responseClone));
           return response;
         })
-        .catch(() => caches.match("lagioff.html"));
+        .catch(() => caches.match("/wandering/lagioff.html"));
     })
   );
 });
