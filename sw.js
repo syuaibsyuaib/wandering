@@ -117,18 +117,18 @@ const messaging = firebase.messaging();
 
 // Tangani notifikasi saat aplikasi di background
 messaging.onBackgroundMessage((payload) => {
-  const { title, body, icon, click_action } = payload.notification;
+  const { title, body, image} = payload.notification;
+
   self.registration.showNotification(title, {
     body,
-    icon: icon || "/icons/windows11/LargeTile.scale-100.png",
-    data: { click_action },
-    actions: [{ action: "open_url", title: "Buka" }],
+    image: image || "/icons/windows11/LargeTile.scale-100.png",
+vibrate: [200, 100, 200, 100, 200, 100, 200],
+requireInteraction: true
   });
 });
 
 self.addEventListener("notificationclick", (event) => {
   event.notification.close();
-  if (event.notification.data && event.notification.data.click_action) {
-    event.waitUntil(clients.openWindow(event.notification.data.click_action));
-  }
+ event.waitUntil(clients.openWindow(event.notification.data.click_action));
+
 });
