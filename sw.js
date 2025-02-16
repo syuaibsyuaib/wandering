@@ -91,7 +91,7 @@ self.addEventListener("fetch", (event) => {
           }
           
           const responseClone = response.clone();
-          caches.open("pwa-cache").then((cache) => cache.put(event.request, responseClone));
+          caches.open("pwa-cache-v1").then((cache) => cache.put(event.request, responseClone));
           return response;
         })
         .catch(() => caches.match("/wandering/lagioff.html"));
