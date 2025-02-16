@@ -89,8 +89,8 @@ self.addEventListener("fetch", (event) => {
             return response;
           }
           
-          // const responseClone = response.clone();
-          // caches.open("pwa-cache-v1").then((cache) => cache.put(event.request, responseClone));
+          const responseClone = response.clone();
+           caches.open("pwa-cache-v1").then((cache) => cache.put(event.request, responseClone));
           return response;
         })
         .catch(() => caches.match("/wandering/lagioff.html"));
@@ -98,14 +98,6 @@ self.addEventListener("fetch", (event) => {
   );
 });
 
-// self.addEventListener("fetch", (event) => {
-//   event.respondWith(
-//     caches.match(event.request).then((cachedResponse) => {
-//       console.log(cachedResponse)
-//       return cachedResponse || fetch(event.request).catch(() => caches.match("/wandering/lagioff.html"));
-//     })
-//   );
-// });
 
 // Konfigurasi Firebase
 const firebaseConfig = {
