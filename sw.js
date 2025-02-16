@@ -56,7 +56,7 @@ self.addEventListener("install", (event) => {
     caches
       .open("pwa-cache-v1")
       .then((cache) => {
-        return cache.addAll(["/wandering/", "/wandering/lagioff.html"]);
+        return cache.addAll(["/wandering/lagioff.html"]);
       })
       .catch((error) => {
         console.error("Failed to cache resources:", error);
@@ -89,8 +89,8 @@ self.addEventListener("fetch", (event) => {
             return response;
           }
           
-          const responseClone = response.clone();
-          caches.open("pwa-cache-v1").then((cache) => cache.put(event.request, responseClone));
+          // const responseClone = response.clone();
+          // caches.open("pwa-cache-v1").then((cache) => cache.put(event.request, responseClone));
           return response;
         })
         .catch(() => caches.match("/wandering/lagioff.html"));
