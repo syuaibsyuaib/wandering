@@ -1,7 +1,6 @@
 // const urlUji = "https://script.google.com/macros/s/AKfycbwIxK2AEFdV17lU7tfwpHdBs5r8LIz5brTdX7_K4RJ-/dev";
 const url =
   "https://script.google.com/macros/s/AKfycbzutCVWhEYBiBFVo7GdmAy336yIqpiK-hi-OLNiCJbhZNfEvTM_pQhWU9xGAL4nCy_-Iw/exec";
-const midtransSandboxCLientKey = "Mid-client-DLtucftKvle74aQF";
 
 const gscriptUrl = (nip, flag = "", fcm = "") =>
   fetch(url, {
