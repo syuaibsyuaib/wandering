@@ -1,9 +1,7 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<script src="https://js.sentry-cdn.com/05cbeab338f5d45f3a0d804ea0f6b3cc.min.js"
-  crossorigin="anonymous"
-></script>
+<script src="https://js.sentry-cdn.com/05cbeab338f5d45f3a0d804ea0f6b3cc.min.js" crossorigin="anonymous"></script>
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
@@ -117,28 +115,29 @@
     <section>
       <!-- this is the start of content -->
       <div class="container pt-3">
-        
+
         <div class="row">
           <div class="col-12 col-md-6">
             <div class="card shadow-sm mb-5">
               <div class="card-body">
                 <div class="card-title">
                   <h6>
-                   :>
+                    :>
                   </h6>
                 </div>
                 <hr />
                 <div class="text-center">
-                 <script type="text/javascript">
-                	atOptions = {
-                		'key' : '87fc85cb1b634996cf0a198d23f6c803',
-                		'format' : 'iframe',
-                		'height' : 300,
-                		'width' : 160,
-                		'params' : {}
-                	};
-                </script>
-                <script type="text/javascript" src="//isabellaentire.com/87fc85cb1b634996cf0a198d23f6c803/invoke.js"></script>
+                  <script type="text/javascript">
+                    atOptions = {
+                      'key': '87fc85cb1b634996cf0a198d23f6c803',
+                      'format': 'iframe',
+                      'height': 300,
+                      'width': 160,
+                      'params': {}
+                    };
+                  </script>
+                  <script type="text/javascript"
+                    src="//isabellaentire.com/87fc85cb1b634996cf0a198d23f6c803/invoke.js"></script>
                 </div>
                 <hr />
                 <div class="input-group mb-3">
@@ -158,7 +157,8 @@
                     width="300" height="250" frameborder="0" scrolling="no" class="m-auto"></iframe>
 
                   <!-- END iklan adsterra-->
-                 <script async="async" data-cfasync="false" src="//isabellaentire.com/7ff771880f2895a9aeb2b9844bb74884/invoke.js"></script>
+                  <script async="async" data-cfasync="false"
+                    src="//isabellaentire.com/7ff771880f2895a9aeb2b9844bb74884/invoke.js"></script>
                   <div id="container-7ff771880f2895a9aeb2b9844bb74884"></div>
                 </div>
               </div>
@@ -311,7 +311,7 @@
 
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-
+  <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-iFDWn0OnvfLYSIzb"></script>
   <script type="module">
     const urlScript =
       "https://script.google.com/macros/s/AKfycbzutCVWhEYBiBFVo7GdmAy336yIqpiK-hi-OLNiCJbhZNfEvTM_pQhWU9xGAL4nCy_-Iw/exec";
@@ -428,10 +428,10 @@
       console.log("Notifikasi FCM diterima: ", payload);
       // showNotification(regis, payload.notification.body);
 
-regis.showNotification(payload.notification.title, {
+      regis.showNotification(payload.notification.title, {
         body: payload.notification.body,
         icon: payload.notification.icon,
-vibrate: [200, 100, 200, 100, 200, 100, 200]
+        vibrate: [200, 100, 200, 100, 200, 100, 200]
       });
     });
 

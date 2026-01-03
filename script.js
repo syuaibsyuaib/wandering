@@ -1,6 +1,7 @@
 // const urlUji = "https://script.google.com/macros/s/AKfycbwIxK2AEFdV17lU7tfwpHdBs5r8LIz5brTdX7_K4RJ-/dev";
 const url =
   "https://script.google.com/macros/s/AKfycbzutCVWhEYBiBFVo7GdmAy336yIqpiK-hi-OLNiCJbhZNfEvTM_pQhWU9xGAL4nCy_-Iw/exec";
+const midtransSandboxCLientKey = "SB-Mid-client-iFDWn0OnvfLYSIzb";
 
 const gscriptUrl = (nip, flag = "", fcm = "") =>
   fetch(url, {
@@ -36,6 +37,24 @@ function proses(e) {
             .then((res) => res.json())
             .then((res) => {
             $("#loading").modal("hide");
+            if(res.status == 'belum bayar'){
+              snap.pay(res.token, {
+                onSuccess: function(result){
+                  $("#loading").modal("hide");
+                  $('#modal_pesan').modal('show')
+                  $('#modal_pesan .modal-body').html(`<p>${res.status}</p>`)
+                  $('#modal_pesan .modal-header').removeClass("bg-danger")
+                  $('#modal_pesan .modal-header').addClass("bg-success text-light")
+                },
+                onError: function(result){
+                  $("#loading").modal("hide");
+                  $('#modal_pesan').modal('show')
+                  $('#modal_pesan .modal-body').html(`<p>${res.status}</p>`)
+                  $('#modal_pesan .modal-header').removeClass("bg-success")
+                  $('#modal_pesan .modal-header').addClass("bg-danger text-light")
+                }
+              })
+            }
             $('#modal_pesan').modal('show')
             $('#modal_pesan .modal-body').html(`<p>${res.status}</p>`)
             $('#modal_pesan .modal-header').removeClass("bg-danger")
