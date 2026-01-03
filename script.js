@@ -76,6 +76,7 @@ function proses(e) {
 }
 
 function payWithSnap(res) {
+  $("#loading").modal("hide");
   if (typeof snap !== 'undefined') {
     snap.pay(res.token, {
       onSuccess: function (result) {
